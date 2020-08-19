@@ -81,7 +81,7 @@ public class TmdbServiceImpl implements TmdbService {
             builder.toUriString(), TmdbGenresResponse.class);
 
         if (!response.getStatusCode().equals(HttpStatus.OK) || response.getBody() == null) {
-            throw new BadRequestException("Error getting genres from tmdb");
+            return null;
         }
 
         return response.getBody().getGenres();

@@ -48,6 +48,18 @@ public class RecommendedServiceImpl implements RecommendedService {
 
     @Override
     public List<String> getAvailableGenres() {
-        return tmdbService.getGenres().stream().map(Genre::getName).collect(Collectors.toList());
+
+        List<Genre> genres = netflixService.getGenres();  // Trying with netflix
+        if (genres == null) {
+            genres = imdbService.getGenres();  // Trying with netflix
+        }
+        if (genres == null) {
+            genres = tmdbService.getGenres();  // Trying with netflix
+        }
+        if (genres == null) {
+            throw new BadRequestException("Error getting the genres");
+        }
+
+        return genres.stream().map(Genre::getName).collect(Collectors.toList());
     }
 }
