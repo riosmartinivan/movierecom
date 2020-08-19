@@ -1,0 +1,26 @@
+version: "3.4"
+
+services:
+
+  movierecom:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9020:9020"
+    secrets:
+      - source: tmdb_api_key
+        target: tmdb_api_key
+      - source: netflix_api_key
+        target: netflix_api_key
+      - source: imdb_api_key
+        target: imdb_api_key
+
+secrets:
+  tmdb_api_key:
+    file: ./etc/secrets/tmdb.apikey
+  netflix_api_key:
+    file: ./etc/secrets/netflix.apikey
+  imdb_api_key:
+    file: ./etc/secrets/imdb.apikey
+

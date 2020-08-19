@@ -1,0 +1,19 @@
+application:
+  name: @project.artifactId@
+build:
+  version: @project.version@
+
+  # Excluding null fields
+  jackson:
+    default-property-inclusion: NON_NULL
+
+com:
+  example:
+    movierecom:
+      services:
+        tmdbServiceURL: https://api.themoviedb.org/3
+
+server:
+  port: 9020
+  servlet:
+    context-path: /api
